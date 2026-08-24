@@ -22,25 +22,25 @@ Desenvolver uma aplicação de linha de comando (CLI) capaz de:
 
 ## 🟢 Fase 1 — Estrutura inicial
 
-- [ ] Criar o diretório do projeto
-- [ ] Criar `main.py`
-- [ ] Criar o menu principal
-- [ ] Criar opção para cadastrar despesa
-- [ ] Criar opção para listar despesas
-- [ ] Criar opção para editar despesa
-- [ ] Criar opção para remover despesa
-- [ ] Criar opção para relatórios
-- [ ] Criar opção para exportar CSV
-- [ ] Criar opção para sair
-- [ ] Criar uma estrutura inicial para representar uma despesa
+- [x] Criar o diretório do projeto
+- [x] Criar `main.py`
+- [x] Criar o menu principal
+- [x] Criar opção para cadastrar despesa
+- [x] Criar opção para listar despesas
+- [x] Criar opção para editar despesa
+- [x] Criar opção para remover despesa
+- [x] Criar opção para relatórios
+- [x] Criar opção para exportar CSV
+- [x] Criar opção para sair
+- [x] Criar uma estrutura inicial para representar uma despesa
 
 **Campos da despesa**
 
-- [ ] `id`
-- [ ] `data`
-- [ ] `descricao`
-- [ ] `categoria`
-- [ ] `valor`
+- [x] `id`
+- [x] `data`
+- [x] `descricao`
+- [x] `categoria`
+- [x] `valor`
 
 **Conceitos**
 
@@ -50,11 +50,11 @@ Desenvolver uma aplicação de linha de comando (CLI) capaz de:
 
 ## 🟢 Fase 2 — Cadastro de despesas
 
-- [ ] Criar `adicionar_despesa()`
-- [ ] Solicitar descrição
-- [ ] Solicitar valor
-- [ ] Solicitar categoria
-- [ ] Solicitar data
+- [x] Criar `adicionar_despesa()`
+- [x] Solicitar descrição
+- [x] Solicitar valor
+- [x] Solicitar categoria
+- [x] Solicitar data 
 - [ ] Gerar ID único
 - [ ] Adicionar a despesa à lista
 - [ ] Validar o valor informado
