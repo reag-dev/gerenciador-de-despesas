@@ -55,31 +55,31 @@ Desenvolver uma aplicação de linha de comando (CLI) capaz de:
 - [x] Solicitar valor
 - [x] Solicitar categoria
 - [x] Solicitar data 
-- [ ] Gerar ID único
-- [ ] Adicionar a despesa à lista
-- [ ] Validar o valor informado
-- [ ] Impedir valores negativos
-- [ ] Validar a data
-- [ ] Exibir mensagem de sucesso
+- [x] Gerar ID único
+- [x] Adicionar a despesa à lista
+- [x] Validar o valor informado
+- [x] Impedir valores negativos
+- [x] Validar a data
+- [x] Exibir mensagem de sucesso
 
 **Desafio**
 
-- [ ] Impedir o cadastro quando algum campo obrigatório estiver vazio
-- [ ] Garantir que o programa não encerre quando o usuário digitar um valor inválido
+- [x] Impedir o cadastro quando algum campo obrigatório estiver vazio
+- [x] Garantir que o programa não encerre quando o usuário digitar um valor inválido
 
 ---
 
 ## 🟢 Fase 3 — Listagem de despesas
 
-- [ ] Criar `listar_despesas()`
-- [ ] Exibir todas as despesas
-- [ ] Exibir ID
-- [ ] Exibir data
-- [ ] Exibir descrição
-- [ ] Exibir categoria
-- [ ] Exibir valor
-- [ ] Exibir o total gasto
-- [ ] Exibir mensagem quando não existirem despesas
+- [x] Criar `listar_despesas()`
+- [x] Exibir todas as despesas
+- [x] Exibir ID
+- [x] Exibir data
+- [x] Exibir descrição
+- [x] Exibir categoria
+- [x] Exibir valor
+- [x] Exibir o total gasto
+- [x] Exibir mensagem quando não existirem despesas
 
 **Ordenação**
 
