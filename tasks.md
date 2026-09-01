@@ -81,30 +81,20 @@ Desenvolver uma aplicação de linha de comando (CLI) capaz de:
 - [x] Exibir o total gasto
 - [x] Exibir mensagem quando não existirem despesas
 
-**Ordenação**
-
-- [ ] Ordenar por data
-- [ ] Ordenar por valor
-- [ ] Ordenar por categoria
-
-**Conceitos**
-
-`sorted()` · `lambda` · Formatação de strings · Formatação numérica
-
 ---
 
 ## 🟡 Fase 4 — CRUD completo
 
 **Editar**
 
-- [ ] Criar `editar_despesa()`
-- [ ] Solicitar o ID da despesa
-- [ ] Verificar se o ID existe
-- [ ] Permitir alterar descrição
-- [ ] Permitir alterar valor
-- [ ] Permitir alterar categoria
-- [ ] Permitir alterar data
-- [ ] Validar os novos dados
+- [x] Criar `editar_despesa()`
+- [x] Solicitar o ID da despesa
+- [x] Verificar se o ID existe
+- [x] Permitir alterar descrição
+- [x] Permitir alterar valor
+- [x] Permitir alterar categoria
+- [x] Permitir alterar data
+- [x] Validar os novos dados
 
 **Remover**
 

@@ -1,16 +1,17 @@
 from utils.db import Database
+from utils.console import clear_console
+import time
 import locale
 from rich.table import Table
 from math import ceil
 from rich.console import Console
-from datetime import date, datetime
-from utils.validations import DecimalValidator, DateValidator
+from datetime import datetime
+from expense_questions import description_question,category_question,value_question,date_question
 from questionary import select, prompt
 
 locale.setlocale(locale.LC_ALL, '')
 database = Database('data/app.db')
 date_format = "%d/%m/%Y"
-expense_types = ("Moradia", "Alimentação", "Conta", "Saúde", "Transporte", "Educação", "Lazer", "Assinatura")
 
 def create_expenses_database():
     database.exec_query(""" 
@@ -37,35 +38,17 @@ def create_expenses_database():
 
 def register_expense():
     questions = [
-        {
-            "type": "text",
-            "name": "description",
-            "message": "Informe a descrição: ",                              
-        }, 
-        {
-            "type": "select",
-            "name": "category",
-            "message": "Selecione a categoria da despesa: ",                
-            "choices": ["Moradia", "Alimentação", "Conta", "Saúde", "Transporte", "Educação", "Lazer", "Assinatura"]
-        }, 
-        {
-            "type": "text",
-            "name": "value",
-            "message": "Informe o valor: ",            
-            "validate": DecimalValidator  
-        }, 
-        {
-            "type": "text", 
-            "name": "date",
-            "message": "Informe a data (dd/mm/yyyy): ",
-            "default": date.today().strftime(date_format),
-            "validate": DateValidator            
-        }
+        description_question(), 
+        category_question(), 
+        value_question(), 
+        date_question()
     ]    
     
     answers = prompt(questions)
     database.exec_query("INSERT INTO expenses (description, category, value, date) VALUES (?, ?, ?, ?)", (answers["description"], answers["category"], answers["value"], datetime.strptime(answers["date"],date_format).isoformat() ))    
     print("Despesa cadastrada com sucesso!")    
+    time.sleep(2)
+    clear_console()
    
 def render_expense_table(total_value, expenses):
     table = Table(title=f"Lista de despesas - Total gasto: {total_value} ")
@@ -121,6 +104,63 @@ def list_expenses():
             case _:                
                 break 
 
+def edit_expense():
+    expense_id = input("Informe o ID do registro a ser editado: ")    
+    result = database.exec_query("SELECT * FROM expenses WHERE id = ?", (expense_id,))
+        
+    if len(result) == 0:
+        print("Nenhum registro encontrado.")
+        return
+
+    expense = result[0]
+    print(f"ITEM ENCONTRADO\n id: {expense[0]}\n Descrição: {expense[2]}\n Categoria: {expense[3]}\n Valor: {expense[4]} ")        
+                        
+    selected_action = select(
+        "O que deseja fazer?",
+        choices=[
+            "Alterar valor",
+            "Alterar categoria",
+            "Alterar data",                                                
+            "Alterar tudo",
+            "Sair"
+        ]
+    ).ask()
+    
+    questions = []
+    match selected_action:
+        case "Alterar tudo":
+            questions.append(date_question())                
+            questions.append(category_question())                
+            questions.append(value_question())
+        case "Alterar valor":         
+            questions.append(value_question())                
+        case "Alterar categoria":
+            questions.append(category_question())                
+        case "Alterar data":            
+            questions.append(date_question())                
+        case _:                
+            return        
+    
+    answers = prompt(questions)
+    if not answers:
+        return
+            
+    set_clauses = []
+    values_to_update = []
+    
+    for key,value in answers.items():                
+        if key == "date":            
+            value = datetime.strptime(answers["date"],date_format).isoformat()
+        set_clauses.append(f"{key} = ?")
+        values_to_update.append(value)
+    
+    update_query = f"UPDATE expenses SET {', '.join(set_clauses)} WHERE id = ?"
+    values_to_update.append(expense[0])
+    database.exec_query(update_query, tuple(values_to_update))    
+    print("Atualização realizada com sucesso!")
+    time.sleep(2)
+    clear_console()
+    
 def main():  
     while True:       
         selected_action = select(
@@ -142,7 +182,7 @@ def main():
             case "Listar despesas":
                 list_expenses()                
             case "Editar despesa":
-                break
+                edit_expense()
             case "Remover despesa":
                 break
             case "Relatórios":

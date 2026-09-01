@@ -12,12 +12,12 @@ class Database:
             cursor.execute(query, params)
             return cursor.fetchall()
     
-    def exec_queries(self, queries):
-        with sqlite3.connect(self.name) as con:
-            cursor = con.cursor()
+    # def exec_queries(self, queries):
+    #     with sqlite3.connect(self.name) as con:
+    #         cursor = con.cursor()
 
-            for query, params in queries:
-                cursor.execute(query, params)
+    #         for query, params in queries:
+    #             cursor.execute(query, params)
 
     
         
